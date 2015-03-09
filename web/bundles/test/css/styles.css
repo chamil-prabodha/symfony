@@ -1,0 +1,85 @@
+body{
+    background: rgba(99,99,99,0.3);
+}
+
+.container.login-container{
+    margin-top: 20vh;
+    width:50%;
+    height:50%;
+}
+
+.container#login{
+    width: 500px;
+    height: auto;
+    padding: auto;
+}
+
+#login-button,
+#signup-button{
+    width: 100px !important;
+}
+
+.container.signup-container{
+    margin-top: 20vh;
+    width: 60%;
+    height: auto; 
+}
+
+.input-group.signup{
+    width: 100% !important;
+    margin-bottom: 10px;
+}
+
+.form-control#inpt-username,
+.form-control#inpt-password{
+    -webkit-border-radius: 5px !important;
+    -moz-border-radius: 5px !important;
+    border-radius: 5px !important;
+    
+}
+.form-control#signup-username
+.form-control#signup-firstname,
+.form-control#signup-lastname,
+.form-control#signup-password,
+.form-control#signup-email{
+    -webkit-border-bottom-right-radius: 5px !important;
+    -webkit-border-top-right-radius: 5px !important;
+    -moz-border-top-right-radius: 5px !important;
+    -moz-border-bottom-right-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    width: 100% !important;
+}
+
+.input-group-addon#username-addon,
+.input-group-addon#password-addon,
+.input-group-addon#firstname-addon,
+.input-group-addon#lastname-addon,
+.input-group-addon#email-addon{
+    -webkit-border-bottom-left-radius: 5px !important;
+    -webkit-border-top-left-radius: 5px !important;
+    -moz-border-top-left-radius: 5px !important;
+    -moz-border-bottom-left-radius: 5px !important;
+    border-top-left-radius: 5px !important;
+    border-bottom-left-radius: 5px !important;
+    background-color: #666666 !important;
+    color: #ffffff !important;
+    width: 100px !important;
+}
+
+#username{
+    width: 100%;
+    
+    padding-bottom: 10px;
+}
+#password{
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.navbar{
+    min-height: 30px !important;
+}
+.navbar.container-fluid{
+    height: 30px !important;
+}

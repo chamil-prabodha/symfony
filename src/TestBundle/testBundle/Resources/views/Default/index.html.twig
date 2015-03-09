@@ -1,0 +1,38 @@
+
+{%extends "testBundle:Default:source.html.twig"%}
+{%block body%}
+
+<div class="container login-container">
+    
+    <div class="jumbotron">
+        <div id="login" class="container">
+            
+            <h2 align="center">Welcome to D5</h2>
+            <h3>Please Sign In</h3>
+            
+            {% if error is defined %}
+            <div class="alert alert-danger" role="alert">
+                {{error}}
+            </div>
+            {%endif%}
+            
+            <form method="post" action="{{url('login_homepage')}}">
+                
+                <div id="username" class="input-group">
+                    <input id="inpt-username" name="username" type="text" class="form-control" placeholder="User Name" aria-describedby="basic-addon1">
+                </div>
+
+                <div id="password" class="input-group">
+                    <input id="inpt-password" name="password" type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon2">
+                </div>
+                <div align="center">
+                    <input id="login-button" class="btn btn-primary btn-md" type="Submit" value="Login" align="center">
+                    <a id="signup-button" align="center" class="btn btn-primary btn-md" href="{{url('signup')}}">Sign Up</a>
+                </div>
+            </form>
+            
+        </div>
+        
+    </div>
+</div>
+{%endblock%}

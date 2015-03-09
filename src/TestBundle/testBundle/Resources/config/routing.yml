@@ -1,0 +1,11 @@
+login_homepage:
+    path:     /
+    defaults: { _controller: testBundle:login:user }
+    
+signup:
+    path:     /signup
+    defaults: {_controller: testBundle:login:signup}
+
+logout:
+    path:     /out
+    defaults: { _controller: testBundle:logout:out }

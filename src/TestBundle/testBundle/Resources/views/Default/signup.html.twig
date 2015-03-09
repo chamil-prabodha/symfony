@@ -1,0 +1,49 @@
+{%extends "testBundle:Default:source.html.twig"%}
+
+
+{%block body%}
+<div class="container signup-container">
+    <div class="jumbotron">
+        <div id="signup" class="container">
+
+            <h2 align="center">Welcome to D5</h2>
+            <h3>Sign Up</h3>
+
+            {% if error is defined %}
+            <div class="alert alert-danger" role="alert">
+                {{error}}
+            </div>
+            {%endif%}
+
+            <form method="post" action="{{url('signup')}}">
+
+                <div class="input-group signup">
+                    <span class="input-group-addon" id="username-addon">Username</span>
+                    <input id="signup-username" name="username" type="text" class="form-control" placeholder="Username" aria-describedby="username-addon">
+                </div>
+                <div class="input-group signup">
+                    <span class="input-group-addon" id="firstname-addon">First Name</span>
+                    <input id="signup-firstname" name="firstname" type="text" class="form-control" placeholder="First Name" aria-describedby="firstname-addon">
+                </div>
+                <div class="input-group signup">
+                    <span class="input-group-addon" id="lastname-addon">Last Name</span>
+                    <input id="signup-lastname" name="lastname" type="text" class="form-control" placeholder="Last Name" aria-describedby="lastname-addon">
+                </div>
+                <div class="input-group signup">
+                    <span class="input-group-addon" id="password-addon">Password</span>
+                    <input id="signup-password" name="password" type="password" class="form-control" placeholder="Password" aria-describedby="password-addon">
+                </div>
+                <div class="input-group signup">
+                    <span class="input-group-addon" id="email-addon">Email</span>
+                    <input id="signup-email" name="email" type="text" class="form-control" placeholder="Email" aria-describedby="email-addon">
+                </div>
+                <div align="center">
+                    <input class="btn btn-primary btn-md" type="submit" value="Sign Up">
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+{%endblock%}

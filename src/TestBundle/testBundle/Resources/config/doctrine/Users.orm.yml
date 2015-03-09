@@ -1,0 +1,43 @@
+TestBundle\testBundle\Entity\Users:
+    type: entity
+    table: users
+    uniqueConstraints:
+        email:
+            columns:
+                - email
+    id:
+        username:
+            type: string
+            nullable: false
+            length: 20
+            fixed: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        password:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            comment: ''
+        firstname:
+            type: string
+            nullable: false
+            length: 20
+            fixed: false
+            comment: ''
+        lastname:
+            type: string
+            nullable: false
+            length: 20
+            fixed: false
+            comment: ''
+        email:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+    lifecycleCallbacks: {  }
