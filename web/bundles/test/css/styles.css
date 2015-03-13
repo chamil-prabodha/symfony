@@ -83,3 +83,30 @@ body{
 .navbar.container-fluid{
     height: 30px !important;
 }
+
+.wall{
+    width: 800px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+#inpt-comment{
+    height: 80px;
+}
+
+textarea{
+    resize: none;
+}
+
+#post-button{
+    float: right;
+    width: 70px;
+    height: 30px;
+    font-size: 100%;
+    padding-bottom: auto;
+    padding-top: auto;
+    background: #333333;
+    border-color: #666666;
+    border-radius: 5px;
+}

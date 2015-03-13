@@ -6,7 +6,8 @@ use TestBundle\testBundle\Entity\Users;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use TestBundle\testBundle\Controller\basic;
+use TestBundle\testBundle\Entity\Posts;
+
 
 class loginController extends Controller{ 
     
@@ -57,19 +58,77 @@ class loginController extends Controller{
             $lastname = $request->get('lastname');
             $password = $request->get('password');
             $email = $request->get('email');
+            $error = null;
             
-            $user->setUsername($username);
-            $user->setFirstname($firstname);
-            $user->setLastname($lastname);
-            $user->setPassword($password);
-            $user->setEmail($email);
+            if(($error=$this->Valid($username,$password))==null){
+                $user->setUsername($username);
+                $user->setPassword($password);
+                $user->setFirstname($firstname);
+                $user->setLastname($lastname);
+                $user->setEmail($email);
+                
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($user);
+                $em->flush();
+            }
             
-            $em = $this->getDoctrine()->getEntityManager();
-            $em->persist($user);
-            $em->flush();
+            else{
+                return $this->render('testBundle:Default:signup.html.twig',array('error'=>$error));
+            }
             
             return $this->render('testBundle:Default:index.html.twig',array('name'=>$firstname));
         }
         return $this->render('testBundle:Default:signup.html.twig');
+    }
+    
+    public function Valid($un,$pw){
+        
+        $em = $this->getDoctrine()->getEntityManager();
+        $repository = $em->getRepository('testBundle:Users');
+        
+        $username = $repository->findOneBy(array('username'=>$un));
+        if($username==null &&  strlen($pw)>=8){
+            return null;
+        }
+        
+        else if($username!=null && strlen($pw)>=8){
+            return array('Username already exists!');
+        }
+        
+        else if($username==null && strlen($pw)<8){
+            return array('Minimum characters for the password is 8');
+        }
+        else {
+            return array('Username already exists!','Minimum characters for the password is 8');
+        }
+    }
+    
+    public function postAction(Request $request){
+        if($request->getMethod()=='POST'){
+            $post = new Posts();
+            $postcomment = $request->get('postcomment');
+            
+            $em = $this->getDoctrine()->getEntityManager();
+            $reporitoryUser = $em->getRepository('testBundle:Users');
+            
+            
+            $session = new Session();
+            $username = $session->get('user');
+            $user = $reporitoryUser->findOneBy(array('username'=>$username));
+            
+            $userid = $user->getUserid();
+            $id = $em->getReference('TestBundle\testBundle\Entity\Users', $userid);
+            $post->setUserid($id);
+            $post->setPostcontent($postcomment);
+            $em->persist($post);
+            $em->flush();
+            
+            return $this->render('testBundle:Default:userpage.html.twig',array('name'=>$user->getFirstname()));
+            
+        }
+    }
+    
+    public function viewprofileAction(){
+        return $this->render('testBundle:Default:userprofile.html.twig',array('name'=>'chamil'));
     }
 }

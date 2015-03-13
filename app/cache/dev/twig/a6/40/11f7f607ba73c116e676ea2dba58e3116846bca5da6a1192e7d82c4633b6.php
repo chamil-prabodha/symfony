@@ -66,7 +66,7 @@ class __TwigTemplate_a64011f7f607ba73c116e676ea2dba58e3116846bca5da6a1192e7d82c4
         <li>
             <a href=\"";
         // line 25
-        echo $this->env->getExtension('routing')->getUrl("login_homepage");
+        echo $this->env->getExtension('routing')->getUrl("profile");
         echo "\">";
         echo twig_escape_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name")), "html", null, true);
         echo "</a>
@@ -101,6 +101,20 @@ class __TwigTemplate_a64011f7f607ba73c116e676ea2dba58e3116846bca5da6a1192e7d82c4
   </div><!-- /.container-fluid -->
 </nav>
 
+<div class=\"container wall\" align=\"center\">
+    <div class=\"jumbotron\" align=\"center\">
+        <form method=\"post\" role=\"post\" action=\"";
+        // line 56
+        echo $this->env->getExtension('routing')->getUrl("post");
+        echo "\">
+            <div class=\"form-group\">
+              <textarea id=\"inpt-comment\" name=\"postcomment\" type=\"text\" class=\"form-control\" placeholder=\"Wrtie new post\"></textarea>
+            </div>
+            <input id=\"post-button\" class=\"btn btn-primary btn-md\" type=\"Submit\" value=\"Post\">
+        </form>
+    </div>
+
+</div>
 
 ";
     }
@@ -117,6 +131,6 @@ class __TwigTemplate_a64011f7f607ba73c116e676ea2dba58e3116846bca5da6a1192e7d82c4
 
     public function getDebugInfo()
     {
-        return array (  96 => 47,  69 => 25,  61 => 20,  51 => 13,  39 => 3,  36 => 2,  11 => 1,);
+        return array (  108 => 56,  96 => 47,  69 => 25,  61 => 20,  51 => 13,  39 => 3,  36 => 2,  11 => 1,);
     }
 }

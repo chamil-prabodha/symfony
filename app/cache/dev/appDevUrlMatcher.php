@@ -146,6 +146,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'TestBundle\\testBundle\\Controller\\logoutController::outAction',  '_route' => 'logout',);
         }
 
+        if (0 === strpos($pathinfo, '/p')) {
+            // post
+            if ($pathinfo === '/post') {
+                return array (  '_controller' => 'TestBundle\\testBundle\\Controller\\loginController::postAction',  '_route' => 'post',);
+            }
+
+            // profile
+            if ($pathinfo === '/profile') {
+                return array (  '_controller' => 'TestBundle\\testBundle\\Controller\\loginController::viewprofileAction',  '_route' => 'profile',);
+            }
+
+        }
+
         // homepage
         if ($pathinfo === '/app/example') {
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);

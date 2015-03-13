@@ -9,3 +9,11 @@ signup:
 logout:
     path:     /out
     defaults: { _controller: testBundle:logout:out }
+
+post:
+    path:     /post
+    defaults: { _controller: testBundle:login:post}
+
+profile:
+    path:     /profile
+    defaults: { _controller: testBundle:login:viewprofile}

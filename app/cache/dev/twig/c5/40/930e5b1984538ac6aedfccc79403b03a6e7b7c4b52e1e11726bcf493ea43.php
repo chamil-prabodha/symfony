@@ -42,23 +42,34 @@ class __TwigTemplate_c540930e5b1984538ac6aedfccc79403b03a6e7b7c4b52e1e11726bcf49
 
             <h2 align=\"center\">Welcome to D5</h2>
             <h3>Sign Up</h3>
-
+            
             ";
         // line 12
         if (array_key_exists("error", $context)) {
             // line 13
-            echo "            <div class=\"alert alert-danger\" role=\"alert\">
+            echo "                ";
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["error"]) ? $context["error"] : $this->getContext($context, "error")));
+            foreach ($context['_seq'] as $context["_key"] => $context["err"]) {
+                // line 14
+                echo "                    <div class=\"alert alert-danger\" role=\"alert\">
+                        ";
+                // line 15
+                echo twig_escape_filter($this->env, $context["err"], "html", null, true);
+                echo "
+                    </div>
                 ";
-            // line 14
-            echo twig_escape_filter($this->env, (isset($context["error"]) ? $context["error"] : $this->getContext($context, "error")), "html", null, true);
-            echo "
-            </div>
-            ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['err'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 18
+            echo "            ";
         }
-        // line 17
+        // line 19
         echo "
             <form method=\"post\" action=\"";
-        // line 18
+        // line 20
         echo $this->env->getExtension('routing')->getUrl("signup");
         echo "\">
 
@@ -106,6 +117,6 @@ class __TwigTemplate_c540930e5b1984538ac6aedfccc79403b03a6e7b7c4b52e1e11726bcf49
 
     public function getDebugInfo()
     {
-        return array (  62 => 18,  59 => 17,  53 => 14,  50 => 13,  48 => 12,  39 => 5,  36 => 4,  11 => 1,);
+        return array (  73 => 20,  70 => 19,  67 => 18,  58 => 15,  55 => 14,  50 => 13,  48 => 12,  39 => 5,  36 => 4,  11 => 1,);
     }
 }

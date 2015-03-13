@@ -8,11 +8,13 @@
 
             <h2 align="center">Welcome to D5</h2>
             <h3>Sign Up</h3>
-
-            {% if error is defined %}
-            <div class="alert alert-danger" role="alert">
-                {{error}}
-            </div>
+            
+            {%if error is defined%}
+                {% for err in error %}
+                    <div class="alert alert-danger" role="alert">
+                        {{err}}
+                    </div>
+                {%endfor%}
             {%endif%}
 
             <form method="post" action="{{url('signup')}}">

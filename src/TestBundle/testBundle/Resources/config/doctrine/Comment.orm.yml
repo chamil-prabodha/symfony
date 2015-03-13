@@ -1,0 +1,46 @@
+TestBundle\testBundle\Entity\Comment:
+    type: entity
+    table: comment
+    indexes:
+        postid:
+            columns:
+                - postid
+        userid:
+            columns:
+                - userid
+    id:
+        commentid:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        commentcontent:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+    manyToOne:
+        postid:
+            targetEntity: Posts
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                postid:
+                    referencedColumnName: postid
+            orphanRemoval: false
+        userid:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                userid:
+                    referencedColumnName: userid
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

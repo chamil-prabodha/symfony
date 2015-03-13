@@ -1,21 +1,22 @@
 TestBundle\testBundle\Entity\Users:
     type: entity
     table: users
-    uniqueConstraints:
-        email:
-            columns:
-                - email
     id:
+        userid:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
         username:
             type: string
             nullable: false
             length: 20
             fixed: false
             comment: ''
-            id: true
-            generator:
-                strategy: IDENTITY
-    fields:
         password:
             type: string
             nullable: false

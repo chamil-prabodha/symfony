@@ -4,16 +4,21 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/wamp/www/test_project/src/TestBundle/testBundle/Controller/loginController.php</file>
+            <file>file:/C:/wamp/www/test_project/web/app_dev.php</file>
             <file>file:/C:/wamp/www/test_project/src/TestBundle/testBundle/testBundle.php</file>
             <file>file:/C:/wamp/www/test_project/src/TestBundle/testBundle/Resources/public/css/styles.css</file>
             <file>file:/C:/wamp/www/test_project/src/TestBundle/testBundle/Resources/config/routing.yml</file>
-            <file>file:/C:/wamp/www/test_project/src/TestBundle/testBundle/Entity/Users.php</file>
+            <file>file:/C:/wamp/www/test_project/src/TestBundle/testBundle/Controller/validation.php</file>
             <file>file:/C:/wamp/www/test_project/src/TestBundle/testBundle/Resources/views/Default/source.html.twig</file>
+            <file>file:/C:/wamp/www/test_project/src/TestBundle/testBundle/Resources/views/Default/userprofile.html.twig</file>
+            <file>file:/C:/wamp/www/test_project/src/TestBundle/testBundle/Resources/config/services.yml</file>
             <file>file:/C:/wamp/www/test_project/src/TestBundle/testBundle/Controller/logoutController.php</file>
             <file>file:/C:/wamp/www/test_project/src/TestBundle/testBundle/Resources/views/Default/index.html.twig</file>
             <file>file:/C:/wamp/www/test_project/src/TestBundle/testBundle/Resources/views/Default/userpage.html.twig</file>
             <file>file:/C:/wamp/www/test_project/web/bundles/test/css/styles.css</file>
+            <file>file:/C:/wamp/www/test_project/src/TestBundle/testBundle/Tests/Controller/logoutControllerTest.php</file>
             <file>file:/C:/wamp/www/test_project/src/Acme/DemoBundle/Resources/views/Demo/index.html.twig</file>
+            <file>file:/C:/wamp/www/test_project/src/TestBundle/testBundle/Resources/config/doctrine/Users.orm.yml</file>
             <file>file:/C:/wamp/www/test_project/src/TestBundle/testBundle/Controller/DefaultController.php</file>
             <file>file:/C:/wamp/www/test_project/src/TestBundle/testBundle/Resources/views/Default/signup.html.twig</file>
             <file>file:/C:/wamp/www/test_project/app/Resources/views/base.html.twig</file>
