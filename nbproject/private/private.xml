@@ -21,6 +21,7 @@
             <file>file:/C:/wamp/www/test_project/src/TestBundle/testBundle/Resources/config/doctrine/Users.orm.yml</file>
             <file>file:/C:/wamp/www/test_project/src/TestBundle/testBundle/Controller/DefaultController.php</file>
             <file>file:/C:/wamp/www/test_project/src/TestBundle/testBundle/Resources/views/Default/signup.html.twig</file>
+            <file>file:/C:/wamp/www/test_project/src/TestBundle/testBundle/Entity/Posts.php</file>
             <file>file:/C:/wamp/www/test_project/app/Resources/views/base.html.twig</file>
             <file>file:/C:/wamp/www/test_project/src/Acme/DemoBundle/Resources/views/layout.html.twig</file>
             <file>file:/C:/wamp/www/test_project/src/Acme/DemoBundle/Resources/public/css/demo.css</file>

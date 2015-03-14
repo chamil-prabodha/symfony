@@ -17,3 +17,7 @@ post:
 profile:
     path:     /profile
     defaults: { _controller: testBundle:login:viewprofile}
+    
+postpage:
+    path:    /posts/{postid}
+    defaults: { _controller: testBundle:login:viewpost}

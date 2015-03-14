@@ -63,4 +63,23 @@
 
 </div>
 
+{%for post in posts|reverse%}
+    <div class="container wall" align="center">
+        <div class="jumbotron" align="left">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">{{username[posts|length-loop.index]}}
+                          <a href="{{url('postpage',{'postid':post.getPostid()})}}" class="btn btn-primary btn-xs " style="float: right;">Like</a>
+                      </h3>
+                      
+                    </div>
+                    <div class="panel-body">
+                      {{post.getPostcontent()}}
+                    </div>
+                </div>
+             
+        </div>
+     
+    </div>
+{%endfor%}
 {%endblock%}

@@ -157,6 +157,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'TestBundle\\testBundle\\Controller\\loginController::viewprofileAction',  '_route' => 'profile',);
             }
 
+            // postpage
+            if (0 === strpos($pathinfo, '/posts') && preg_match('#^/posts/(?P<postid>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'postpage')), array (  '_controller' => 'TestBundle\\testBundle\\Controller\\loginController::viewpostAction',));
+            }
+
         }
 
         // homepage

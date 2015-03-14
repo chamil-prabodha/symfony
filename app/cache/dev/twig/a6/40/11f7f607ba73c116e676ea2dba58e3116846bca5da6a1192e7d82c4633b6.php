@@ -117,6 +117,63 @@ class __TwigTemplate_a64011f7f607ba73c116e676ea2dba58e3116846bca5da6a1192e7d82c4
 </div>
 
 ";
+        // line 66
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable(twig_reverse_filter($this->env, (isset($context["posts"]) ? $context["posts"] : $this->getContext($context, "posts"))));
+        $context['loop'] = array(
+          'parent' => $context['_parent'],
+          'index0' => 0,
+          'index'  => 1,
+          'first'  => true,
+        );
+        if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof Countable)) {
+            $length = count($context['_seq']);
+            $context['loop']['revindex0'] = $length - 1;
+            $context['loop']['revindex'] = $length;
+            $context['loop']['length'] = $length;
+            $context['loop']['last'] = 1 === $length;
+        }
+        foreach ($context['_seq'] as $context["_key"] => $context["post"]) {
+            // line 67
+            echo "    <div class=\"container wall\" align=\"center\">
+        <div class=\"jumbotron\" align=\"left\">
+                <div class=\"panel panel-default\">
+                    <div class=\"panel-heading\">
+                      <h3 class=\"panel-title\">";
+            // line 71
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["username"]) ? $context["username"] : $this->getContext($context, "username")), (twig_length_filter($this->env, (isset($context["posts"]) ? $context["posts"] : $this->getContext($context, "posts"))) - $this->getAttribute($context["loop"], "index", array())), array(), "array"), "html", null, true);
+            echo "
+                          <a href=\"";
+            // line 72
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("postpage", array("postid" => $this->getAttribute($context["post"], "getPostid", array(), "method"))), "html", null, true);
+            echo "\" class=\"btn btn-primary btn-xs \" style=\"float: right;\">Like</a>
+                      </h3>
+                      
+                    </div>
+                    <div class=\"panel-body\">
+                      ";
+            // line 77
+            echo twig_escape_filter($this->env, $this->getAttribute($context["post"], "getPostcontent", array(), "method"), "html", null, true);
+            echo "
+                    </div>
+                </div>
+             
+        </div>
+     
+    </div>
+";
+            ++$context['loop']['index0'];
+            ++$context['loop']['index'];
+            $context['loop']['first'] = false;
+            if (isset($context['loop']['length'])) {
+                --$context['loop']['revindex0'];
+                --$context['loop']['revindex'];
+                $context['loop']['last'] = 0 === $context['loop']['revindex0'];
+            }
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['post'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
     }
 
     public function getTemplateName()
@@ -131,6 +188,6 @@ class __TwigTemplate_a64011f7f607ba73c116e676ea2dba58e3116846bca5da6a1192e7d82c4
 
     public function getDebugInfo()
     {
-        return array (  108 => 56,  96 => 47,  69 => 25,  61 => 20,  51 => 13,  39 => 3,  36 => 2,  11 => 1,);
+        return array (  156 => 77,  148 => 72,  144 => 71,  138 => 67,  121 => 66,  108 => 56,  96 => 47,  69 => 25,  61 => 20,  51 => 13,  39 => 3,  36 => 2,  11 => 1,);
     }
 }

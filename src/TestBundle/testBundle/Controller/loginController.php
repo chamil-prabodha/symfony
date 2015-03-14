@@ -25,9 +25,10 @@ class loginController extends Controller{
                 $session = new session();
                 $session->start();
                 $session->set('user', $username);
-                return $this->render('testBundle:Default:userpage.html.twig',array('name'=>$user->getFirstname()));
+                $posts = $this->getPosts();
+                return $this->render('testBundle:Default:userpage.html.twig',array('name'=>$user->getFirstname(),'posts'=>$posts,'username'=>$this->getusername($posts)));
             }
-            
+           
             else{
                 
                 return $this->render('testBundle:Default:index.html.twig',array('error'=>'Invalid Login'));
@@ -42,7 +43,8 @@ class loginController extends Controller{
                 $username = $session->get('user');
      
                 $user = $repository->findOneBy(array('username'=>$username));
-                return $this->render('testBundle:Default:userpage.html.twig',array('name'=>$user->getFirstname()));
+                $posts = $this->getPosts();
+                return $this->render('testBundle:Default:userpage.html.twig',array('name'=>$user->getFirstname(),'posts'=>$posts,'username'=>$this->getusername($posts)));
             }
             
             return $this->render('testBundle:Default:index.html.twig');
@@ -123,12 +125,41 @@ class loginController extends Controller{
             $em->persist($post);
             $em->flush();
             
-            return $this->render('testBundle:Default:userpage.html.twig',array('name'=>$user->getFirstname()));
+            $posts = $this->getPosts();
+            
+            return $this->render('testBundle:Default:userpage.html.twig',array('name'=>$user->getFirstname(),'posts'=>$posts,'username'=>$this->getusername($posts)));
             
         }
     }
     
     public function viewprofileAction(){
         return $this->render('testBundle:Default:userprofile.html.twig',array('name'=>'chamil'));
+    }
+    
+    public function getPosts(){
+        $em = $this->getDoctrine()->getEntityManager();
+        $repositoryPosts = $em->getRepository('testBundle:Posts');
+        
+        $repositoryUsers = $em->getRepository('testBundle:Users');
+        $posts = array();
+        $posts = $repositoryPosts->findAll();
+        
+        return $posts;
+        
+        
+    }
+    
+    public function getusername(array $posts){
+        $em = $this->getDoctrine()->getEntityManager();
+        $arr = array();
+        
+        $repository = $em->getRepository('testBundle:Users');
+        foreach ($posts as $key=>$post) {
+            $user = $repository->findOneBy(array('userid'=>$post->getUserid()));
+            $arr[$key] = $user->getFirstname()." ".$user->getLastname();
+            
+        }    
+        
+        return $arr;
     }
 }
