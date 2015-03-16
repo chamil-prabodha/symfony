@@ -39,28 +39,31 @@ class __TwigTemplate_5b3dbdc3e2f4cd5e7634b4a46cc2a9d9ba645bca37dba7f8b89d354ce9a
         echo "
 <div class=\"container login-container\">
     
+    
+    <h1 class=\"welcome\" align=\"center\" style=\"font-family: 'Stalemate-Regular'; font-weight: 600;font-size: 80px\">
+        CSE Friends</h1>
+    
     <div class=\"jumbotron\">
         <div id=\"login\" class=\"container\">
-            
-            <h2 align=\"center\">Welcome to D5</h2>
-            <h3>Please Sign In</h3>
+
+            <h3 class=\"welcome\" align=\"center\">Please Sign In</h3>
             
             ";
-        // line 13
+        // line 16
         if (array_key_exists("error", $context)) {
-            // line 14
+            // line 17
             echo "            <div class=\"alert alert-danger\" role=\"alert\">
                 ";
-            // line 15
+            // line 18
             echo twig_escape_filter($this->env, (isset($context["error"]) ? $context["error"] : $this->getContext($context, "error")), "html", null, true);
             echo "
             </div>
             ";
         }
-        // line 18
+        // line 21
         echo "            
             <form method=\"post\" action=\"";
-        // line 19
+        // line 22
         echo $this->env->getExtension('routing')->getUrl("login_homepage");
         echo "\">
                 
@@ -72,9 +75,9 @@ class __TwigTemplate_5b3dbdc3e2f4cd5e7634b4a46cc2a9d9ba645bca37dba7f8b89d354ce9a
                     <input id=\"inpt-password\" name=\"password\" type=\"password\" class=\"form-control\" placeholder=\"Password\" aria-describedby=\"basic-addon2\">
                 </div>
                 <div align=\"center\">
-                    <input id=\"login-button\" class=\"btn btn-primary btn-md\" type=\"Submit\" value=\"Login\" align=\"center\">
-                    <a id=\"signup-button\" align=\"center\" class=\"btn btn-primary btn-md\" href=\"";
-        // line 30
+                    <input id=\"login-button\" class=\"btn btn-primary btn-md buttons\" type=\"Submit\" value=\"Login\" align=\"center\">
+                    <a id=\"signup-button\" align=\"center\" class=\"btn btn-primary btn-md buttons\" href=\"";
+        // line 33
         echo $this->env->getExtension('routing')->getUrl("signup");
         echo "\">Sign Up</a>
                 </div>
@@ -99,6 +102,6 @@ class __TwigTemplate_5b3dbdc3e2f4cd5e7634b4a46cc2a9d9ba645bca37dba7f8b89d354ce9a
 
     public function getDebugInfo()
     {
-        return array (  78 => 30,  64 => 19,  61 => 18,  55 => 15,  52 => 14,  50 => 13,  39 => 4,  36 => 3,  11 => 2,);
+        return array (  81 => 33,  67 => 22,  64 => 21,  58 => 18,  55 => 17,  53 => 16,  39 => 4,  36 => 3,  11 => 2,);
     }
 }

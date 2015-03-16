@@ -40,8 +40,8 @@ class __TwigTemplate_c540930e5b1984538ac6aedfccc79403b03a6e7b7c4b52e1e11726bcf49
     <div class=\"jumbotron\">
         <div id=\"signup\" class=\"container\">
 
-            <h2 align=\"center\">Welcome to D5</h2>
-            <h3>Sign Up</h3>
+            <h2 class=\"welcome\" align=\"center\" style=\"font-family: Stalemate-Regular;font-weight: 600;font-size: 80px\">CSE Friends</h2>
+            <h3 class=\"welcome\">Sign Up</h3>
             
             ";
         // line 12
@@ -94,7 +94,7 @@ class __TwigTemplate_c540930e5b1984538ac6aedfccc79403b03a6e7b7c4b52e1e11726bcf49
                     <input id=\"signup-email\" name=\"email\" type=\"text\" class=\"form-control\" placeholder=\"Email\" aria-describedby=\"email-addon\">
                 </div>
                 <div align=\"center\">
-                    <input class=\"btn btn-primary btn-md\" type=\"submit\" value=\"Sign Up\">
+                    <input class=\"btn btn-primary btn-md buttons\" type=\"submit\" value=\"Sign Up\">
                 </div>
             </form>
 

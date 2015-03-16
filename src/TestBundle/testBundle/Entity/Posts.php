@@ -20,6 +20,11 @@ class Posts
     private $postcontent;
 
     /**
+     * @var string
+     */
+    private $likes;
+
+    /**
      * @var \TestBundle\testBundle\Entity\Users
      */
     private $userid;
@@ -56,6 +61,29 @@ class Posts
     public function getPostcontent()
     {
         return $this->postcontent;
+    }
+
+    /**
+     * Set likes
+     *
+     * @param string $likes
+     * @return Posts
+     */
+    public function setLikes($likes)
+    {
+        $this->likes = $likes;
+
+        return $this;
+    }
+
+    /**
+     * Get likes
+     *
+     * @return string 
+     */
+    public function getLikes()
+    {
+        return $this->likes;
     }
 
     /**

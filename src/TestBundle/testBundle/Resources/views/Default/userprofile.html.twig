@@ -1,7 +1,40 @@
-{% extends "testBundle:Default:source.html.twig"%}
-{%block body%}
-<div class="container" ailgn="center">
-    Hello {{name}}!!!
-</div>
+{% extends "testBundle:Default:userpage.html.twig"%}
+{%block postcontent%}
 
+<div class="col-sm-4">
+    <div class="container" style="width:100%;padding: 20px;">
+        <div class="jumbotron profile" align="left">
+            <h2>{{profile.getFirstname()}} {{profile.getLastname()}}</h2>
+            <h4>User Name: {{profile.getUsername()}}</h4>
+            <h4>{{profile.getEmail()}}</h4>
+            
+        </div>
+    </div>
+</div>
+<div class="col-sm-8">
+{%for post in posts|reverse%}
+	{%if userid==post.getUserid().getUserid()%}
+	    <div class="container profile" align="left">
+	        
+                <div class="panel panel-default post-panel">
+                    <div class="panel-heading header-trans">
+
+                      <h3 class="panel-title">{{username[posts|length-loop.index]}}
+                          <a href="{{url('postpage',{'postid':post.getPostid()})}}" class="btn btn-primary btn-xs buttons post-comment">Comment</a>
+                          <a href="{{url('like',{'postid':post.getPostid()})}}" class="btn btn-primary btn-xs buttons post-like" style="float: right;">Like</a>
+                          <div class="likes">{{likes[posts|length-loop.index]}} Likes</div>
+                      </h3>
+
+                    </div>
+                    <div class="panel-body">
+                      {{post.getPostcontent()}}
+                    </div>
+                </div>
+	    </div>
+	{%endif%}
+{%endfor%}
+</div>
+{%endblock%}
+
+{%block content%}
 {%endblock%}

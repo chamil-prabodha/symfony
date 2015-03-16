@@ -1,0 +1,52 @@
+{%extends "testBundle:Default:userpage.html.twig"%}
+{%block postcontent%}
+
+<div class="container wall" align="center">
+        <div class="jumbotron" align="left">
+            <div class="panel panel-default post-panel">
+                <div class="panel-heading header-trans">
+                  <h3 class="panel-title">{{fullname}}
+
+                      <a href="{{url('like',{'postid':postid})}}" class="btn btn-primary btn-xs buttons post-like">Like</a>
+
+                      <div class="likes">{{likes}} Likes</div>
+                  </h3>
+
+                </div>
+                <div class="panel-body">
+                    {{content}}
+
+                </div>
+
+            </div>
+            <div class="container" style="width:70%">
+                {%for comment in comments%}
+                        
+                <div class="panel panel-default post-panel">
+                    <div class="panel-heading header-trans">
+                        <h3 class="panel-title">{{commentor[loop.index-1]}}
+                            
+                        </h3>
+
+                    </div>
+                    <div class="panel-body">
+                        {{comment.getCommentcontent}}
+                    </div>
+
+                </div>
+                {%endfor%}
+                <form method="post" role="post" action="{{url('comment',{'postid':postid})}}">
+                    <div class="form-group">
+                      <textarea id="inpt-comment" name="comment" type="text" class="form-control" placeholder="Write new comment"></textarea>
+                    </div>
+                    <input id="comment-button" class="btn btn-primary btn-md buttons" type="Submit" value="Comment">
+                </form>
+            </div>
+        </div>
+     
+    </div>
+
+{%endblock%}
+
+{%block content%}
+{%endblock%}

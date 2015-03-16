@@ -21,6 +21,13 @@ TestBundle\testBundle\Entity\Posts:
             length: 100
             fixed: false
             comment: ''
+        likes:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 0
+            comment: ''
+            default: '0'
     manyToOne:
         userid:
             targetEntity: Users

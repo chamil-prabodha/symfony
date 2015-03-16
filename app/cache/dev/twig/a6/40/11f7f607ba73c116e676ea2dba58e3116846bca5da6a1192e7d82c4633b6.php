@@ -19,6 +19,8 @@ class __TwigTemplate_a64011f7f607ba73c116e676ea2dba58e3116846bca5da6a1192e7d82c4
 
         $this->blocks = array(
             'body' => array($this, 'block_body'),
+            'postcontent' => array($this, 'block_postcontent'),
+            'content' => array($this, 'block_content'),
         );
     }
 
@@ -49,50 +51,41 @@ class __TwigTemplate_a64011f7f607ba73c116e676ea2dba58e3116846bca5da6a1192e7d82c4
       <a class=\"navbar-brand\" href=\"";
         // line 13
         echo $this->env->getExtension('routing')->getUrl("login_homepage");
-        echo "\">Brand</a>
+        echo "\" style=\"font-family: Stalemate-Regular;font-size: 25px\">
+          CSE Friends</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
       <ul class=\"nav navbar-nav\">
-        <li class=\"active\">
-            <a href=\"";
+        <li class=\"";
         // line 20
+        echo twig_escape_filter($this->env, (isset($context["home"]) ? $context["home"] : $this->getContext($context, "home")), "html", null, true);
+        echo "\">
+            <a href=\"";
+        // line 21
         echo $this->env->getExtension('routing')->getUrl("login_homepage");
         echo "\">Home 
                 <span class=\"sr-only\">current page</span>
             </a>
         </li>
-        <li>
-            <a href=\"";
+        <li class=\"";
         // line 25
+        echo twig_escape_filter($this->env, (isset($context["user"]) ? $context["user"] : $this->getContext($context, "user")), "html", null, true);
+        echo "\">
+            <a href=\"";
+        // line 26
         echo $this->env->getExtension('routing')->getUrl("profile");
         echo "\">";
         echo twig_escape_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name")), "html", null, true);
         echo "</a>
         </li>
-        <li class=\"dropdown\">
-          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>
-          <ul class=\"dropdown-menu\" role=\"menu\">
-            <li><a href=\"#\">Action</a></li>
-            <li><a href=\"#\">Another action</a></li>
-            <li><a href=\"#\">Something else here</a></li>
-            <li class=\"divider\"></li>
-            <li><a href=\"#\">Separated link</a></li>
-            <li class=\"divider\"></li>
-            <li><a href=\"#\">One more separated link</a></li>
-          </ul>
-        </li>
+        
       </ul>
-      <form class=\"navbar-form navbar-left\" role=\"search\">
-        <div class=\"form-group\">
-          <input type=\"text\" class=\"form-control\" placeholder=\"Search\">
-        </div>
-        <button type=\"submit\" class=\"btn btn-default\">Submit</button>
-      </form>
+      
       <ul class=\"nav navbar-nav navbar-right\">
         <li><a href=\"";
-        // line 47
+        // line 32
         echo $this->env->getExtension('routing')->getUrl("logout");
         echo "\">Logout</a></li>
         
@@ -100,24 +93,39 @@ class __TwigTemplate_a64011f7f607ba73c116e676ea2dba58e3116846bca5da6a1192e7d82c4
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+";
+        // line 38
+        $this->displayBlock('postcontent', $context, $blocks);
+        // line 40
+        $this->displayBlock('content', $context, $blocks);
+    }
 
-<div class=\"container wall\" align=\"center\">
+    // line 38
+    public function block_postcontent($context, array $blocks = array())
+    {
+    }
+
+    // line 40
+    public function block_content($context, array $blocks = array())
+    {
+        // line 41
+        echo "<div class=\"container wall\" align=\"center\">
     <div class=\"jumbotron\" align=\"center\">
         <form method=\"post\" role=\"post\" action=\"";
-        // line 56
+        // line 43
         echo $this->env->getExtension('routing')->getUrl("post");
         echo "\">
             <div class=\"form-group\">
-              <textarea id=\"inpt-comment\" name=\"postcomment\" type=\"text\" class=\"form-control\" placeholder=\"Wrtie new post\"></textarea>
+              <textarea id=\"inpt-post\" name=\"post\" type=\"text\" class=\"form-control\" placeholder=\"Write new post\"></textarea>
             </div>
-            <input id=\"post-button\" class=\"btn btn-primary btn-md\" type=\"Submit\" value=\"Post\">
+            <input class=\"btn btn-primary btn-md button-style buttons\" type=\"Submit\" value=\"Post\">
         </form>
     </div>
 
 </div>
 
-";
-        // line 66
+    ";
+        // line 53
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable(twig_reverse_filter($this->env, (isset($context["posts"]) ? $context["posts"] : $this->getContext($context, "posts"))));
         $context['loop'] = array(
@@ -134,34 +142,41 @@ class __TwigTemplate_a64011f7f607ba73c116e676ea2dba58e3116846bca5da6a1192e7d82c4
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["post"]) {
-            // line 67
-            echo "    <div class=\"container wall\" align=\"center\">
-        <div class=\"jumbotron\" align=\"left\">
-                <div class=\"panel panel-default\">
-                    <div class=\"panel-heading\">
-                      <h3 class=\"panel-title\">";
-            // line 71
+            // line 54
+            echo "    <div class=\"container wall\" align=\"left\">
+        
+        <div class=\"panel panel-default post-panel\">
+            <div class=\"panel-heading header-trans\">
+              <h3 class=\"panel-title\">";
+            // line 58
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["username"]) ? $context["username"] : $this->getContext($context, "username")), (twig_length_filter($this->env, (isset($context["posts"]) ? $context["posts"] : $this->getContext($context, "posts"))) - $this->getAttribute($context["loop"], "index", array())), array(), "array"), "html", null, true);
             echo "
-                          <a href=\"";
-            // line 72
+
+                  <a href=\"";
+            // line 60
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("postpage", array("postid" => $this->getAttribute($context["post"], "getPostid", array(), "method"))), "html", null, true);
-            echo "\" class=\"btn btn-primary btn-xs \" style=\"float: right;\">Like</a>
-                      </h3>
-                      
-                    </div>
-                    <div class=\"panel-body\">
-                      ";
-            // line 77
+            echo "\" class=\"btn btn-primary btn-xs buttons post-comment\">Comment</a>
+                  <a href=\"";
+            // line 61
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("like", array("postid" => $this->getAttribute($context["post"], "getPostid", array(), "method"))), "html", null, true);
+            echo "\" class=\"btn btn-primary btn-xs buttons post-like\">Like</a>
+                  <div class=\"likes\">";
+            // line 62
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["likes"]) ? $context["likes"] : $this->getContext($context, "likes")), (twig_length_filter($this->env, (isset($context["posts"]) ? $context["posts"] : $this->getContext($context, "posts"))) - $this->getAttribute($context["loop"], "index", array())), array(), "array"), "html", null, true);
+            echo " Likes</div>
+              </h3>
+
+            </div>
+            <div class=\"panel-body\">
+              ";
+            // line 67
             echo twig_escape_filter($this->env, $this->getAttribute($context["post"], "getPostcontent", array(), "method"), "html", null, true);
             echo "
-                    </div>
-                </div>
-             
+            </div>
         </div>
-     
+        
     </div>
-";
+    ";
             ++$context['loop']['index0'];
             ++$context['loop']['index'];
             $context['loop']['first'] = false;
@@ -188,6 +203,6 @@ class __TwigTemplate_a64011f7f607ba73c116e676ea2dba58e3116846bca5da6a1192e7d82c4
 
     public function getDebugInfo()
     {
-        return array (  156 => 77,  148 => 72,  144 => 71,  138 => 67,  121 => 66,  108 => 56,  96 => 47,  69 => 25,  61 => 20,  51 => 13,  39 => 3,  36 => 2,  11 => 1,);
+        return array (  173 => 67,  165 => 62,  161 => 61,  157 => 60,  152 => 58,  146 => 54,  129 => 53,  116 => 43,  112 => 41,  109 => 40,  104 => 38,  100 => 40,  98 => 38,  89 => 32,  78 => 26,  74 => 25,  67 => 21,  63 => 20,  53 => 13,  41 => 3,  38 => 2,  11 => 1,);
     }
 }

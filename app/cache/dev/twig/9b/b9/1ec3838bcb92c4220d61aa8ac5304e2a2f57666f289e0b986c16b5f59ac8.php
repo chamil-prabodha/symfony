@@ -32,27 +32,28 @@ class __TwigTemplate_9bb91ec3838bcb92c4220d61aa8ac5304e2a2f57666f289e0b986c16b5f
         // line 6
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/test/css/styles.css"), "html", null, true);
         echo "\">
+    
 </head>
 <body class=\"back\">
     ";
-        // line 9
+        // line 10
         $this->displayBlock('body', $context, $blocks);
-        // line 11
+        // line 12
         echo "    
     <script src=\"";
-        // line 12
+        // line 13
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/test/js/jquery-2.1.3.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 13
+        // line 14
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/test/js/jquery-ui.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 14
+        // line 15
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/test/js/bootstrap.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 15
+        // line 16
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/test/js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
 </body>
@@ -60,10 +61,10 @@ class __TwigTemplate_9bb91ec3838bcb92c4220d61aa8ac5304e2a2f57666f289e0b986c16b5f
 </htm>";
     }
 
-    // line 9
+    // line 10
     public function block_body($context, array $blocks = array())
     {
-        // line 10
+        // line 11
         echo "    ";
     }
 
@@ -79,6 +80,6 @@ class __TwigTemplate_9bb91ec3838bcb92c4220d61aa8ac5304e2a2f57666f289e0b986c16b5f
 
     public function getDebugInfo()
     {
-        return array (  67 => 10,  64 => 9,  56 => 15,  52 => 14,  48 => 13,  44 => 12,  41 => 11,  39 => 9,  33 => 6,  29 => 5,  25 => 4,  20 => 1,);
+        return array (  68 => 11,  65 => 10,  57 => 16,  53 => 15,  49 => 14,  45 => 13,  42 => 12,  40 => 10,  33 => 6,  29 => 5,  25 => 4,  20 => 1,);
     }
 }

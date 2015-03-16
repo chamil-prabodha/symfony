@@ -21,3 +21,11 @@ profile:
 postpage:
     path:    /posts/{postid}
     defaults: { _controller: testBundle:login:viewpost}
+    
+like:
+    path:    /likes/{postid}
+    defaults: { _controller: testBundle:login:like}
+    
+comment:
+    path:    /comment/{postid}
+    defaults: { _controller: testBundle:login:comment}

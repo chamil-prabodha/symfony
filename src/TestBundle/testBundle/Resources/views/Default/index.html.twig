@@ -4,11 +4,14 @@
 
 <div class="container login-container">
     
+    
+    <h1 class="welcome" align="center" style="font-family: 'Stalemate-Regular'; font-weight: 600;font-size: 80px">
+        CSE Friends</h1>
+    
     <div class="jumbotron">
         <div id="login" class="container">
-            
-            <h2 align="center">Welcome to D5</h2>
-            <h3>Please Sign In</h3>
+
+            <h3 class="welcome" align="center">Please Sign In</h3>
             
             {% if error is defined %}
             <div class="alert alert-danger" role="alert">
@@ -26,8 +29,8 @@
                     <input id="inpt-password" name="password" type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon2">
                 </div>
                 <div align="center">
-                    <input id="login-button" class="btn btn-primary btn-md" type="Submit" value="Login" align="center">
-                    <a id="signup-button" align="center" class="btn btn-primary btn-md" href="{{url('signup')}}">Sign Up</a>
+                    <input id="login-button" class="btn btn-primary btn-md buttons" type="Submit" value="Login" align="center">
+                    <a id="signup-button" align="center" class="btn btn-primary btn-md buttons" href="{{url('signup')}}">Sign Up</a>
                 </div>
             </form>
             

@@ -164,6 +164,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // like
+        if (0 === strpos($pathinfo, '/likes') && preg_match('#^/likes/(?P<postid>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'like')), array (  '_controller' => 'TestBundle\\testBundle\\Controller\\loginController::likeAction',));
+        }
+
+        // comment
+        if (0 === strpos($pathinfo, '/comment') && preg_match('#^/comment/(?P<postid>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'comment')), array (  '_controller' => 'TestBundle\\testBundle\\Controller\\loginController::commentAction',));
+        }
+
         // homepage
         if ($pathinfo === '/app/example') {
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);

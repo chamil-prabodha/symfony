@@ -7,14 +7,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use TestBundle\testBundle\Entity\Posts;
-
+use TestBundle\testBundle\Entity\Comment;
 
 class loginController extends Controller{ 
     
     public function userAction(Request $request) {
-        
-        $em = $this->getDoctrine()->getEntityManager();
-        $repository = $em->getRepository('testBundle:Users');
+    
+        $repository = $this->getUserRepository();
         if($request->getMethod()=='POST'){
             $username = $request->get('username');
             $password = $request->get('password');
@@ -26,7 +25,10 @@ class loginController extends Controller{
                 $session->start();
                 $session->set('user', $username);
                 $posts = $this->getPosts();
-                return $this->render('testBundle:Default:userpage.html.twig',array('name'=>$user->getFirstname(),'posts'=>$posts,'username'=>$this->getusername($posts)));
+                $parameters = array('name'=>$user->getFirstname(),'posts'=>$posts,
+                    'username'=>$this->getusername($posts),'likes'=>$this->getlikes($posts),
+                    'home'=>'active','user'=>'');
+                return $this->render('testBundle:Default:userpage.html.twig',$parameters);
             }
            
             else{
@@ -44,7 +46,10 @@ class loginController extends Controller{
      
                 $user = $repository->findOneBy(array('username'=>$username));
                 $posts = $this->getPosts();
-                return $this->render('testBundle:Default:userpage.html.twig',array('name'=>$user->getFirstname(),'posts'=>$posts,'username'=>$this->getusername($posts)));
+                $parameters = array('name'=>$user->getFirstname(),'posts'=>$posts,
+                    'username'=>$this->getusername($posts),'likes'=>$this->getlikes($posts),
+                    'home'=>'active','user'=>'');
+                return $this->render('testBundle:Default:userpage.html.twig',$parameters);
             }
             
             return $this->render('testBundle:Default:index.html.twig');
@@ -84,9 +89,8 @@ class loginController extends Controller{
     }
     
     public function Valid($un,$pw){
-        
-        $em = $this->getDoctrine()->getEntityManager();
-        $repository = $em->getRepository('testBundle:Users');
+       
+        $repository = $this->getUserRepository();
         
         $username = $repository->findOneBy(array('username'=>$un));
         if($username==null &&  strlen($pw)>=8){
@@ -108,44 +112,53 @@ class loginController extends Controller{
     public function postAction(Request $request){
         if($request->getMethod()=='POST'){
             $post = new Posts();
-            $postcomment = $request->get('postcomment');
+            $postcomment = $request->get('post');
             
             $em = $this->getDoctrine()->getEntityManager();
-            $reporitoryUser = $em->getRepository('testBundle:Users');
+            $reporitoryUser = $this->getUserRepository();
             
             
             $session = new Session();
             $username = $session->get('user');
             $user = $reporitoryUser->findOneBy(array('username'=>$username));
-            
-            $userid = $user->getUserid();
-            $id = $em->getReference('TestBundle\testBundle\Entity\Users', $userid);
-            $post->setUserid($id);
+         
+            $post->setUserid($user);
             $post->setPostcontent($postcomment);
+            $post->setLikes(0);
             $em->persist($post);
             $em->flush();
             
             $posts = $this->getPosts();
-            
-            return $this->render('testBundle:Default:userpage.html.twig',array('name'=>$user->getFirstname(),'posts'=>$posts,'username'=>$this->getusername($posts)));
+            $parameters = array('name'=>$user->getFirstname(),'posts'=>$posts,
+                'username'=>$this->getusername($posts),'likes'=>$this->getlikes($posts),
+                'home'=>'active','user'=>'');
+            return $this->render('testBundle:Default:userpage.html.twig',$parameters);
             
         }
     }
     
     public function viewprofileAction(){
-        return $this->render('testBundle:Default:userprofile.html.twig',array('name'=>'chamil'));
+        
+        $repository = $this->getUserRepository();
+        $session = new session();
+        if($session->has('user')){
+            $username = $session->get('user');
+            $user = $repository->findOneBy(array('username'=>$username));
+            $posts = $this->getPosts();
+            $parameters = array('name'=>$user->getFirstname(),'userid'=>$user->getUserid(),
+                'posts'=>$posts,'username'=>$this->getusername($posts),'likes'=>$this->getlikes($posts),
+                'home'=>'','user'=>'active','profile'=>$user);
+            return $this->render('testBundle:Default:userprofile.html.twig',$parameters);
+        }
     }
     
     public function getPosts(){
-        $em = $this->getDoctrine()->getEntityManager();
-        $repositoryPosts = $em->getRepository('testBundle:Posts');
         
-        $repositoryUsers = $em->getRepository('testBundle:Users');
+        $repositoryPosts = $this->getPostRepository();
         $posts = array();
         $posts = $repositoryPosts->findAll();
         
         return $posts;
-        
         
     }
     
@@ -153,7 +166,7 @@ class loginController extends Controller{
         $em = $this->getDoctrine()->getEntityManager();
         $arr = array();
         
-        $repository = $em->getRepository('testBundle:Users');
+        $repository = $this->getUserRepository();
         foreach ($posts as $key=>$post) {
             $user = $repository->findOneBy(array('userid'=>$post->getUserid()));
             $arr[$key] = $user->getFirstname()." ".$user->getLastname();
@@ -161,5 +174,106 @@ class loginController extends Controller{
         }    
         
         return $arr;
+    }
+    
+    public function getlikes(array $posts){
+        
+        $arr = array();
+        
+        foreach($posts as $key=>$post){
+            $arr[$key] = $post->getLikes();
+        }
+        
+        return $arr;
+    }
+    
+    public function likeAction($postid){
+        $em = $this->getDoctrine()->getEntityManager();
+        $repository = $this->getPostRepository();
+        
+        $post = $repository->findOneBy(array('postid'=>$postid));
+        $currentlikes = $post->getLikes();
+        $post->setLikes($currentlikes+1);
+        
+        $em->persist($post);
+        $em->flush();
+        
+        return $this->redirect($this->generateUrl('login_homepage'));
+    }
+    
+    public function viewpostAction($postid){
+        
+        $session = new Session();
+        $name;
+        if($session->has('user')){
+            $userrepo = $this->getUserRepository();
+            $user = $userrepo->findOneByUsername($session->get('user'));
+            $name = $user->getFirstname();
+        }
+        
+        $postrepo = $this->getPostRepository();
+        $post = $postrepo->findOneByPostid($postid);
+        
+        $userrepo = $this->getUserRepository();
+        $user = $userrepo->findOneByUserid($post->getUserid());
+        $fullname = $user->getFirstname()." ".$user->getLastname();
+        
+        $postcontent = $post->getPostcontent();
+        $comments = $this->getComments($postid);
+        $commentedby = $this->getusername($comments);
+        
+        $parameters = array('name'=>$name,'fullname'=>$fullname,'postid'=>$postid,
+            'content'=>$postcontent,'comments'=>$comments,'commentor'=>$commentedby,
+            'likes'=>$post->getLikes(),'home'=>'','user'=>'');
+        return $this->render('testBundle:Default:postpage.html.twig',$parameters);
+    }
+    
+    public function getUserRepository(){
+        $em = $this->getDoctrine()->getEntityManager();
+        return $em->getRepository('testBundle:Users');
+    }
+    
+    public function getPostRepository(){
+        $em = $this->getDoctrine()->getEntityManager();
+        return $em->getRepository('testBundle:Posts');
+    }
+    
+    public function getComments($postid){
+        $em = $this->getDoctrine()->getEntityManager();
+        $commentrepo = $em->getRepository('testBundle:Comment');
+        
+        $comments = $commentrepo->findByPostid($postid);
+        
+        return $comments;
+    }
+    public function commentAction($postid,Request $request){
+        
+        if($request->getMethod()== 'POST'){
+        $commentcontent = $request->get('comment');
+        $em = $this->getDoctrine()->getEntityManager();
+        
+        $userrepo = $this->getUserRepository();
+        $user = null;
+        $session = new Session();
+        if($session->has('user')){
+            $username = $session->get('user');
+            $user = $userrepo->findOneByUsername($username);
+        }
+        
+        $comment = new Comment();
+
+        $comment->setUserid($user);
+        
+        $postrepo = $this->getPostRepository();
+        $post = $postrepo->findOneByPostid($postid);
+        $comment->setPostid($post);
+        
+        $comment->setCommentcontent($commentcontent);
+        $em->persist($comment);
+        $em->flush();
+        
+        return $this->redirect($this->generateUrl('postpage',array('postid'=>$postid)));
+        }
+        
     }
 }
